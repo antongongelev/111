@@ -1,0 +1,6 @@
+com\example\application\domain\Message.class
+com\example\application\domain\Client.class
+com\example\application\Application.class
+com\example\application\repos\MessageRepo.class
+com\example\application\GreetingController.class
+com\example\application\repos\ClientRepo.class

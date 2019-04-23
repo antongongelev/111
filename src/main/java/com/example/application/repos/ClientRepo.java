@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ClientRepo extends CrudRepository<Client, Integer> {
-    List<Client> findByphoneNumber(String phoneNumber);
+    List<Client> findById(Number id);
 }
