@@ -16,16 +16,18 @@ public class Client {
     private String birthDate;
     private String passportInfo;
     private String phoneNumber;
+    private String address;
     private String email;
     private String password;
 
     public Client(String firstName, String secondName, String birthDate, String passportInfo,
-                  String telephoneNumber, String email, String password) {
+                  String telephoneNumber, String address, String email, String password) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.birthDate = birthDate;
         this.passportInfo = passportInfo;
         this.phoneNumber = telephoneNumber;
+        this.address = address;
         this.email = email;
         this.password = password;
     }
@@ -47,6 +49,14 @@ public class Client {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getSecondName() {
