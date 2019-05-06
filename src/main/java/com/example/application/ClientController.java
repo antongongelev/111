@@ -4,9 +4,7 @@ import com.example.application.domain.Client;
 import com.example.application.repos.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @CrossOrigin
@@ -14,10 +12,18 @@ public class ClientController {
     @Autowired
     private ClientRepo clientRepo;
 
-    @GetMapping("/")
+    @GetMapping("/clients/get-all")
     @ResponseBody
     public Iterable<Client> add() {
         return clientRepo.findAll();
     }
+
+//    @PostMapping("/clients/create")
+//    @ResponseBody
+//    public Iterable<Client> create(@RequestBody (required = false )Client client) {
+//       // clientRepo.save(client);
+//        return clientRepo.findAll();
+//
+//    }
 
 }
