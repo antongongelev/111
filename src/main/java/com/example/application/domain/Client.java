@@ -1,16 +1,14 @@
 package com.example.application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
 
-    private Integer id;
     private String firstName;
     private String secondName;
     private String birthDate;
@@ -20,8 +18,9 @@ public class Client {
     private String email;
     private String password;
 
-    public Client(String firstName, String secondName, String birthDate, String passportInfo,
+    public Client(Long id, String firstName, String secondName, String birthDate, String passportInfo,
                   String telephoneNumber, String address, String email, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.birthDate = birthDate;
@@ -35,11 +34,11 @@ public class Client {
     public Client() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

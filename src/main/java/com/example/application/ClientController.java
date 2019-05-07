@@ -18,12 +18,11 @@ public class ClientController {
         return clientRepo.findAll();
     }
 
-//    @PostMapping("/clients/create")
-//    @ResponseBody
-//    public Iterable<Client> create(@RequestBody (required = false )Client client) {
-//       // clientRepo.save(client);
-//        return clientRepo.findAll();
-//
-//    }
+    @PostMapping("/clients/create")
+    @ResponseBody
+    public Client create(@RequestBody(required = false) Client client) {
+        return clientRepo.save(client);
+
+    }
 
 }
