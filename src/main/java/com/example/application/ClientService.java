@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ClientService {
@@ -26,7 +24,6 @@ public class ClientService {
 
     public Client update(@RequestBody(required = false) Client client) {
         Client removeClient = clientRepo.findById(client.getId()).get(0);
-        // clientRepo.delete(removeClient);
         clientRepo.delete(removeClient);
         return clientRepo.save(client);
     }

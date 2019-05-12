@@ -16,7 +16,6 @@ public class ClientController {
     @ResponseBody
     public Iterable<Client> get() {
         return clientService.getAllClients();
-        // return clientRepo.findAll();
     }
 
     @PostMapping("/clients/create")
@@ -37,12 +36,5 @@ public class ClientController {
          return clientService.delete(client);
     }
 
-
-
-//    public Client update(@RequestBody(required = false) Client client) {
-//        clientRepo.findById(client.getId()).set(0, client);
-//        Client newClient = clientRepo.findById(client.getId()).get(0);
-//        return clientRepo.save(newClient);
-//    }
 
 }
