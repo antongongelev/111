@@ -2,22 +2,60 @@ package com.example.application.domain;
 
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "tariffs")
 public class Tariff {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
+
+    @ManyToMany
+    @JoinTable(name = "options_tariffs",
+            joinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "tariff_id", referencedColumnName = "id"))
+    private Set<Option> avaliableOptions;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tariff")
+    private Set<Contract> contracts;
 
     private String name;
     private Integer payment;
-    private List<Option> options;
 
-    public Tariff(String name, Integer payment, List<Option> options) {
+    public Tariff(Set<Option> avaliableOptions, Set<Contract> contracts, String name, Integer payment) {
+        this.avaliableOptions = avaliableOptions;
+        this.contracts = contracts;
         this.name = name;
         this.payment = payment;
-        this.options = options;
     }
 
     public Tariff() {
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public Set<Option> getAvaliableOptions() {
+        return avaliableOptions;
+    }
+
+    public void setAvaliableOptions(Set<Option> avaliableOptions) {
+        this.avaliableOptions = avaliableOptions;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,11 +74,4 @@ public class Tariff {
         this.payment = payment;
     }
 
-    public List<Option> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<Option> options) {
-        this.options = options;
-    }
 }

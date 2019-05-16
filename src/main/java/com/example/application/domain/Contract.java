@@ -1,34 +1,56 @@
 package com.example.application.domain;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "contracts")
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "phoneNumber", unique = true, nullable = false)
-    private String phoneNumber;
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
 
+    @OneToOne(optional = false, mappedBy = "contract")
+    private PhoneNumber phoneNumber;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "tariff_id", nullable = false)
     private Tariff tariff;
-    private List<Option> chosenOptions;
 
+    @OneToMany
+    @JoinTable(name = "options_contracts",
+            joinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "contract_id", referencedColumnName = "id"))
+    private Set<Option> chosenOptions;
 
-    public Contract(String phoneNumber, Tariff tariff, List<Option> options) {
-        this.phoneNumber = phoneNumber;
-        this.tariff = tariff;
-        this.chosenOptions = options;
-    }
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     public Contract() {
-
     }
 
-    public String getPhoneNumber() {
+    public Contract(PhoneNumber phoneNumber, Tariff tariff, Set<Option> chosenOptions, Client client) {
+        this.phoneNumber = phoneNumber;
+        this.tariff = tariff;
+        this.chosenOptions = chosenOptions;
+        this.client = client;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -40,13 +62,19 @@ public class Contract {
         this.tariff = tariff;
     }
 
-    public List<Option> getChosenOptions() {
+    public Set<Option> getChosenOptions() {
         return chosenOptions;
     }
 
-    public void setChosenOptions(List<Option> options) {
-        this.chosenOptions = options;
+    public void setChosenOptions(Set<Option> chosenOptions) {
+        this.chosenOptions = chosenOptions;
     }
 
+    public Client getClient() {
+        return client;
+    }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

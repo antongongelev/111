@@ -1,8 +1,10 @@
 package com.example.application.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,19 +15,21 @@ public class Client {
     private String secondName;
     private String birthDate;
     private String passportInfo;
-    private String phoneNumber;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+    private Set<Contract> contracts;
+
     private String address;
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
     private String password;
 
-    public Client(Long id, String firstName, String secondName, String birthDate, String passportInfo,
-                  String telephoneNumber, String address, String email, String password) {
-        this.id = id;
+    public Client(String firstName, String secondName, String birthDate, String passportInfo,
+                  Set<Contract> contracts, String address, String email, String password) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.birthDate = birthDate;
         this.passportInfo = passportInfo;
-        this.phoneNumber = telephoneNumber;
+        this.contracts = contracts;
         this.address = address;
         this.email = email;
         this.password = password;
@@ -74,12 +78,12 @@ public class Client {
         this.birthDate = birthDate;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public Set<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public String getPassportInfo() {
