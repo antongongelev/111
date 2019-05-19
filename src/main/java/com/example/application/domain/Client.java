@@ -1,5 +1,7 @@
 package com.example.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ public class Client {
     private String birthDate;
     private String passportInfo;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+   // @JsonIgnore
     private Set<Contract> contracts;
 
     private String address;

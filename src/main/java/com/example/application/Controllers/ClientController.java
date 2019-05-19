@@ -1,5 +1,6 @@
-package com.example.application;
+package com.example.application.Controllers;
 
+import com.example.application.Services.ClientService;
 import com.example.application.domain.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.application.Services;
 
 import com.example.application.domain.Client;
 import com.example.application.repos.ClientRepo;
@@ -23,7 +23,7 @@ public class ClientService {
     }
 
     public Client update(@RequestBody(required = false) Client client) {
-        Client removeClient = clientRepo.findById(client.getId()).get(0);
+        Client removeClient = clientRepo.findById(client.getId()).get();
         clientRepo.delete(removeClient);
         return clientRepo.save(client);
     }

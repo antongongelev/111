@@ -1,6 +1,10 @@
 package com.example.application.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,13 +16,17 @@ public class Tariff {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
+
     @ManyToMany
-    @JoinTable(name = "options_tariffs",
-            joinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "tariff_id", referencedColumnName = "id"))
+    @JoinTable(name = "tariff_option",
+            joinColumns = @JoinColumn(name = "tariff_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
+    //@JsonIgnoreProperties("tariffs")
+    @JsonIgnore
     private Set<Option> avaliableOptions;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "tariff")
+    @JsonIgnore
     private Set<Contract> contracts;
 
     private String name;
@@ -33,6 +41,7 @@ public class Tariff {
 
     public Tariff() {
     }
+
 
     public Set<Contract> getContracts() {
         return contracts;

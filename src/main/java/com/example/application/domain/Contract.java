@@ -1,5 +1,8 @@
 package com.example.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,32 +14,35 @@ public class Contract {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @OneToOne(optional = false, mappedBy = "contract")
-    private PhoneNumber phoneNumber;
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "tariff_id", nullable = false)
     private Tariff tariff;
 
-    @OneToMany
-    @JoinTable(name = "options_contracts",
-            joinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "contract_id", referencedColumnName = "id"))
+    @ManyToMany
+    @JoinTable(name = "contract_option",
+            joinColumns = @JoinColumn(name = "contract_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
     private Set<Option> chosenOptions;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonIgnore
     private Client client;
 
     public Contract() {
     }
 
-    public Contract(PhoneNumber phoneNumber, Tariff tariff, Set<Option> chosenOptions, Client client) {
+    public Contract(String phoneNumber, Tariff tariff, Set<Option> chosenOptions, Client client) {
         this.phoneNumber = phoneNumber;
         this.tariff = tariff;
         this.chosenOptions = chosenOptions;
         this.client = client;
     }
+
+
 
     public Long getId() {
         return id;
@@ -46,11 +52,11 @@ public class Contract {
         this.id = id;
     }
 
-    public PhoneNumber getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(PhoneNumber phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
