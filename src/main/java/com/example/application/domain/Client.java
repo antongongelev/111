@@ -18,7 +18,6 @@ public class Client {
     private String birthDate;
     private String passportInfo;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
-   // @JsonIgnore
     private Set<Contract> contracts;
 
     private String address;

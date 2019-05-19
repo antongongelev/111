@@ -4,7 +4,6 @@ import com.example.application.domain.Client;
 import com.example.application.repos.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Service
@@ -18,17 +17,15 @@ public class ClientService {
         return clientRepo.findAll();
     }
 
-    public Client create(@RequestBody(required = false) Client client) {
+    public Client create(Client client) {
         return clientRepo.save(client);
     }
 
-    public Client update(@RequestBody(required = false) Client client) {
-        Client removeClient = clientRepo.findById(client.getId()).get();
-        clientRepo.delete(removeClient);
+    public Client update(Client client) {
         return clientRepo.save(client);
     }
 
-    public Iterable<Client> delete(@RequestBody(required = false) Client client) {
+    public Iterable<Client> delete(Client client) {
         clientRepo.delete(client);
         return clientRepo.findAll();
     }
