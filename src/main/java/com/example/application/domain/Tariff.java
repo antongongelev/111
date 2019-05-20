@@ -2,8 +2,6 @@ package com.example.application.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,7 +19,6 @@ public class Tariff {
     @JoinTable(name = "tariff_option",
             joinColumns = @JoinColumn(name = "tariff_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
-    //@JsonIgnoreProperties("tariffs")
     @JsonIgnore
     private Set<Option> avaliableOptions;
 

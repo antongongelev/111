@@ -1,6 +1,5 @@
 package com.example.application.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,7 +13,6 @@ public class Option {
     private Long id;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "avaliableOptions")
-    //@JsonIgnoreProperties("avaliableOptions")
     private Set<Tariff> tariffs;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "chosenOptions")
