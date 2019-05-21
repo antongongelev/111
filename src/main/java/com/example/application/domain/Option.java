@@ -12,7 +12,7 @@ public class Option {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "avaliableOptions")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "avaliableOptions")
     private Set<Tariff> tariffs;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "chosenOptions")

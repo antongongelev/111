@@ -16,13 +16,15 @@ public class Client {
     private String secondName;
     private String birthDate;
     private String passportInfo;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Contract> contracts;
 
     private String address;
     @Column(name = "email", unique = true, nullable = false)
     private String email;
     private String password;
+
 
     public Client(String firstName, String secondName, String birthDate, String passportInfo,
                   Set<Contract> contracts, String address, String email, String password) {

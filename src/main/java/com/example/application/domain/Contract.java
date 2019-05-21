@@ -16,7 +16,7 @@ public class Contract {
     @Column(unique = true, nullable = false)
     private String phoneNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "tariff_id", nullable = false)
     private Tariff tariff;
 
@@ -26,7 +26,7 @@ public class Contract {
             inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
     private Set<Option> chosenOptions;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "client_id", nullable = false)
     @JsonIgnore
     private Client client;

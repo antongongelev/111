@@ -29,7 +29,8 @@ public class Tariff {
     private String name;
     private Integer payment;
 
-    public Tariff(Set<Option> avaliableOptions, Set<Contract> contracts, String name, Integer payment) {
+    public Tariff(Set<Option> avaliableOptions, Set<Contract> contracts,
+                  String name, Integer payment) {
         this.avaliableOptions = avaliableOptions;
         this.contracts = contracts;
         this.name = name;
