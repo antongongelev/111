@@ -2,6 +2,7 @@ package com.example.application.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,6 +22,7 @@ public class Tariff {
             inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
     @JsonIgnore
     private Set<Option> avaliableOptions;
+
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "tariff")
     @JsonIgnore

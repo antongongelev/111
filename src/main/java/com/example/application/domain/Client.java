@@ -1,6 +1,9 @@
 package com.example.application.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,8 +19,10 @@ public class Client {
     private String secondName;
     private String birthDate;
     private String passportInfo;
+
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "client",
-            cascade = CascadeType.REMOVE, orphanRemoval = true)
+            cascade = CascadeType.MERGE, orphanRemoval = true)
     private Set<Contract> contracts;
 
     private String address;

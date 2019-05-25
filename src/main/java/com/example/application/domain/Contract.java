@@ -1,6 +1,8 @@
 package com.example.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -16,9 +18,14 @@ public class Contract {
     @Column(unique = true, nullable = false)
     private String phoneNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "tariff_id", nullable = false)
     private Tariff tariff;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     @ManyToMany
     @JoinTable(name = "contract_option",
@@ -26,10 +33,7 @@ public class Contract {
             inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
     private Set<Option> chosenOptions;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "client_id", nullable = false)
-    @JsonIgnore
-    private Client client;
+
 
     public Contract() {
     }
