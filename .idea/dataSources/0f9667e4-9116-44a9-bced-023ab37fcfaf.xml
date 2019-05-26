@@ -43,14 +43,14 @@
     <schema id="10" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2019-05-21.22:57:21.251</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1174</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2019-05-27.02:03:10.091</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1423</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <sequence id="11" parent="10" name="contracts_id_seq">
-      <ObjectId>25015</ObjectId>
-      <StateNumber>1143</StateNumber>
+    <sequence id="11" parent="10" name="clients_id_seq">
+      <ObjectId>25082</ObjectId>
+      <StateNumber>1421</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
@@ -61,9 +61,9 @@
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
     </sequence>
-    <sequence id="13" parent="10" name="clients_id_seq">
-      <ObjectId>24786</ObjectId>
-      <StateNumber>1041</StateNumber>
+    <sequence id="13" parent="10" name="contracts_id_seq">
+      <ObjectId>25015</ObjectId>
+      <StateNumber>1143</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
@@ -83,16 +83,16 @@
       <CacheSize>1</CacheSize>
     </sequence>
     <table id="16" parent="10" name="clients">
-      <ObjectId>24788</ObjectId>
-      <StateNumber>1147</StateNumber>
+      <ObjectId>25084</ObjectId>
+      <StateNumber>1423</StateNumber>
     </table>
     <table id="17" parent="10" name="contract_option">
       <ObjectId>25045</ObjectId>
-      <StateNumber>1174</StateNumber>
+      <StateNumber>1419</StateNumber>
     </table>
     <table id="18" parent="10" name="contracts">
       <ObjectId>25017</ObjectId>
-      <StateNumber>1156</StateNumber>
+      <StateNumber>1423</StateNumber>
     </table>
     <table id="19" parent="10" name="options">
       <ObjectId>24803</ObjectId>
@@ -110,7 +110,7 @@
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <DefaultExpression>nextval(&apos;clients_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>clients_id_seq</SequenceName>
@@ -118,64 +118,64 @@
     <column id="23" parent="16" name="address">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="24" parent="16" name="birth_date">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="25" parent="16" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="26" parent="16" name="first_name">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="27" parent="16" name="passport_info">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="28" parent="16" name="password">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="29" parent="16" name="second_name">
-      <Position>9</Position>
+      <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1421</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="30" parent="16" name="clients_pkey">
-      <ObjectId>24795</ObjectId>
+      <ObjectId>25091</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <index id="31" parent="16" name="uk_srv16ica2c1csub334bxjjb59">
-      <ObjectId>24797</ObjectId>
+      <ObjectId>25093</ObjectId>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="32" parent="16" name="clients_pkey">
-      <ObjectId>24796</ObjectId>
+      <ObjectId>25092</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>clients_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="33" parent="16" name="uk_srv16ica2c1csub334bxjjb59">
-      <ObjectId>24798</ObjectId>
+      <ObjectId>25094</ObjectId>
       <ColNames>email</ColNames>
       <UnderlyingIndexName>uk_srv16ica2c1csub334bxjjb59</UnderlyingIndexName>
     </key>
@@ -276,9 +276,9 @@ option_id</ColNames>
       <UnderlyingIndexName>uk_bulfk6p3kluc7xu74fr7ffn6d</UnderlyingIndexName>
     </key>
     <foreign-key id="48" parent="18" name="fkrqssit79jdlx2ch8ubajt6w4y">
-      <ObjectId>25035</ObjectId>
+      <ObjectId>25095</ObjectId>
       <ColNames>client_id</ColNames>
-      <RefTableId>24788</RefTableId>
+      <RefTableId>25084</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>clients</RefTableName>
       <RefKeyName>clients_pkey</RefKeyName>
